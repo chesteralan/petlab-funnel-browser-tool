@@ -1,4 +1,5 @@
-const execute = () => { 
+
+var execute = () => { 
     // get funnel id
     const getFunnelId = () => {
         return document.querySelector('meta[name="funnel-id"]')?.content;
@@ -11,7 +12,7 @@ const execute = () => {
 
     // container
     const container = document.createElement("div"); 
-    container.id="petlab-devtool";
+    container.id="petlab-devtool-chrome-ext";
     container.style.position = "fixed";
     container.style.top = "235px";
     container.style.right = "0px";
@@ -61,16 +62,20 @@ const execute = () => {
         container.appendChild(configButton);
     }
 
-    setTimeout(() => {
-        if( getFunnelId() || getProductSelectorId() ) {
+    
+    if( getFunnelId() || getProductSelectorId() ) {
+        if(document.querySelectorAll('#petlab-devtool-chrome-ext').length <= 0) {
             document.body.appendChild(container); 
             console.log("Petlab Builder Tool: tool successfully inserted!");
-        } else {
-            console.log("Petlab Builder Tool: no ids found!");
         }
-    },1000);
+    } else {
+        console.log("Petlab Builder Tool: no ids found!");
+    }
 
+    console.log("Petlab Builder Tool... clicked!")
 }
 
 window.addEventListener("onload", execute);
 window.addEventListener("pageshow", execute);
+
+execute();

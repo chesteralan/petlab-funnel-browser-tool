@@ -4,7 +4,8 @@
   "version": "1.0.1",
   "manifest_version": 2,
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"],
+    "persistent": true
   },
   "icons": {
     "16": "/images/16.png",
@@ -22,5 +23,9 @@
       "run_at": "document_end",
       "js": ["content-script.js"]
     }
-  ]
+  ],
+  "browser_action": {
+    "default_icon": "/images/96.png",
+      "default_title": "Insert Shortcuts"
+    }
 }

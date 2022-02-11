@@ -27,5 +27,6 @@
   "browser_action": {
     "default_icon": "/images/96.png",
       "default_title": "Insert Shortcuts"
-    }
+    },
+    "homepage_url": "https://github.com/chesteralan/petlab-funnel-browser-tool"
 }

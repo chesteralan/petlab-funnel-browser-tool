@@ -17,7 +17,8 @@ var execute = (options) => {
     const container = document.createElement("div"); 
     container.id="petlab-devtool-chrome-ext";
     container.style.position = "fixed";
-    container.style.top = "235px";
+    container.style.width = "30px";
+    container.style.top = "400px";
     container.style.right = "0px";
     container.style.display = "block";
     container.style.zIndex = 9999;
@@ -62,7 +63,7 @@ var execute = (options) => {
     const localButton = button.cloneNode(true);
     localButton.innerHTML = "<i class='fa fa-desktop'></i>";
     localButton.href = localhost + window.location.pathname;
-    localButton.style.marginTop = "40px";
+
 
 
     // append

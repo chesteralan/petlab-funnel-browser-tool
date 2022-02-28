@@ -1,5 +1,8 @@
 
-var execute = () => { 
+var execute = (options) => { 
+
+    console.log(options);
+
     // get funnel id
     const getFunnelId = () => {
         return document.querySelector('meta[name="funnel-id"]')?.content;
@@ -54,6 +57,14 @@ var execute = () => {
     configButton.href = `https://builder.io/content/${getProductSelectorId()}`;
     configButton.target = "_blank";
 
+    // localhost button
+    const localhost = "http://localhost:8000"
+    const localButton = button.cloneNode(true);
+    localButton.innerHTML = "<i class='fa fa-desktop'></i>";
+    localButton.href = localhost + window.location.pathname;
+    localButton.style.marginTop = "40px";
+
+
     // append
     if( getFunnelId() ) {
         container.appendChild(editButton);
@@ -61,7 +72,7 @@ var execute = () => {
     if( getProductSelectorId() ) {
         container.appendChild(configButton);
     }
-
+    container.appendChild(localButton);
     
     if( getFunnelId() || getProductSelectorId() ) {
         if(document.querySelectorAll('#petlab-devtool-chrome-ext').length <= 0) {
@@ -78,4 +89,14 @@ var execute = () => {
 window.addEventListener("onload", execute);
 window.addEventListener("pageshow", execute);
 
-execute();
+chrome.storage.sync.get({
+        localhost: 'http://localhost:8000',
+    }, function(options) {
+
+    //Do all my webpage processing here, 
+    //basically writing my entire Extension inside
+    // this call to chrome.storage.sync.get()
+
+    execute(options);
+
+})

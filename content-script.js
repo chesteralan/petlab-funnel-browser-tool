@@ -13,6 +13,11 @@ var execute = (options) => {
         return document.querySelector('meta[name="product-selector-id"]')?.content;
     };
 
+    // get product selector id
+    const getMainUrl = (defaultUrl) => {
+        return document.querySelector('meta[name="main-domain"]')?.content || defaultUrl;
+    };
+
     // container
     const container = document.createElement("div"); 
     container.id="petlab-devtool-chrome-ext";
@@ -65,7 +70,7 @@ var execute = (options) => {
     localButton.href = localhost + window.location.pathname;
 
     // localhost button
-    const liveurl = "http://localhost:8000"
+    const liveurl = getMainUrl("https://offer.thepetlabco.com");
     const liveButton = button.cloneNode(true);
     liveButton.innerHTML = `<img src="${chrome.extension.getURL('images/eye.svg')}" width="15" />`;
     liveButton.href = liveurl + window.location.pathname;

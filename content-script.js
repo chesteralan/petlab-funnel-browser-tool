@@ -48,23 +48,27 @@ var execute = (options) => {
 
     // edit button
     const editButton = button.cloneNode(true);
-    editButton.innerHTML = "<i class='fa fa-pencil'></i>";
+    editButton.innerHTML = `<img src="${chrome.extension.getURL('images/pencil.svg')}" width="15" />`;
     editButton.href = `https://builder.io/content/${getFunnelId()}`;
     editButton.target = "_blank";
 
     // config button
     const configButton = button.cloneNode(true);
-    configButton.innerHTML = "<i class='fa fa-cogs'></i>";
+    configButton.innerHTML = `<img src="${chrome.extension.getURL('images/gears.svg')}" width="15" />`;
     configButton.href = `https://builder.io/content/${getProductSelectorId()}`;
     configButton.target = "_blank";
 
     // localhost button
     const localhost = "http://localhost:8000"
     const localButton = button.cloneNode(true);
-    localButton.innerHTML = "<i class='fa fa-desktop'></i>";
+    localButton.innerHTML = `<img src="${chrome.extension.getURL('images/desktop.svg')}" width="15" />`;
     localButton.href = localhost + window.location.pathname;
 
-
+    // localhost button
+    const liveurl = "http://localhost:8000"
+    const liveButton = button.cloneNode(true);
+    liveButton.innerHTML = `<img src="${chrome.extension.getURL('images/eye.svg')}" width="15" />`;
+    liveButton.href = liveurl + window.location.pathname;
 
     // append
     if( getFunnelId() ) {
@@ -74,6 +78,7 @@ var execute = (options) => {
         container.appendChild(configButton);
     }
     container.appendChild(localButton);
+    container.appendChild(liveButton);
     
     if( getFunnelId() || getProductSelectorId() ) {
         if(document.querySelectorAll('#petlab-devtool-chrome-ext').length <= 0) {

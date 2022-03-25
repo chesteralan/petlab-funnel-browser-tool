@@ -33,5 +33,11 @@
   "options_ui": {
     "page": "options/index.html",
     "open_in_tab": false
-  } 
+  },
+  "web_accessible_resources": [
+    "images/pencil.svg",
+    "images/gears.svg",
+    "images/desktop.svg",
+    "images/eye.svg"
+  ]
 }

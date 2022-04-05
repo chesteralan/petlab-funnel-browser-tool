@@ -1,7 +1,7 @@
 {
   "name": "Petlab Funnel Browser Tool",
   "description": "Petlab Funnel Browser Tool",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "manifest_version": 2,
   "background": {
     "scripts": ["background.js"],
@@ -38,6 +38,7 @@
     "images/pencil.svg",
     "images/gears.svg",
     "images/desktop.svg",
-    "images/eye.svg"
+    "images/globe.svg",
+    "images/dev.svg"
   ]
 }

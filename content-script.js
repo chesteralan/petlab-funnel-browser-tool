@@ -68,18 +68,21 @@ var execute = (options) => {
     const localButton = button.cloneNode(true);
     localButton.innerHTML = `<img src="${chrome.extension.getURL('images/desktop.svg')}" width="15" />`;
     localButton.href = localhost + window.location.pathname;
+    localButton.target = '_blank';
 
     // staging button
     const stagingurl = "https://funnel-dev.thepetlabco.com";
     const stagingButton = button.cloneNode(true);
-    stagingButton.innerHTML = `<img src="${chrome.extension.getURL('images/dev.svg')}" width="15" />`; 
+    stagingButton.innerHTML = `<img src="${chrome.extension.getURL('images/dev.svg')}" width="15" />`;
     stagingButton.href = stagingurl + window.location.pathname;
+    stagingButton.target = '_blank';
 
     // live button
     const liveurl = getMainUrl("https://offer.thepetlabco.com");
     const liveButton = button.cloneNode(true);
-    liveButton.innerHTML = `<img src="${chrome.extension.getURL('images/eye.svg')}" width="15" />`;
+    liveButton.innerHTML = `<img src="${chrome.extension.getURL('images/globe.svg')}" width="15" />`;
     liveButton.href = liveurl + window.location.pathname;
+    liveButton.target = '_blank';
 
     // append
     if( getFunnelId() ) {

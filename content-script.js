@@ -69,7 +69,13 @@ var execute = (options) => {
     localButton.innerHTML = `<img src="${chrome.extension.getURL('images/desktop.svg')}" width="15" />`;
     localButton.href = localhost + window.location.pathname;
 
-    // localhost button
+    // staging button
+    const stagingurl = "https://funnel-dev.thepetlabco.com";
+    const stagingButton = button.cloneNode(true);
+    stagingButton.innerHTML = `<img src="${chrome.extension.getURL('images/dev.svg')}" width="15" />`; 
+    stagingButton.href = stagingurl + window.location.pathname;
+
+    // live button
     const liveurl = getMainUrl("https://offer.thepetlabco.com");
     const liveButton = button.cloneNode(true);
     liveButton.innerHTML = `<img src="${chrome.extension.getURL('images/eye.svg')}" width="15" />`;
@@ -83,6 +89,7 @@ var execute = (options) => {
         container.appendChild(configButton);
     }
     container.appendChild(localButton);
+    container.appendChild(stagingButton);
     container.appendChild(liveButton);
     
     if( getFunnelId() || getProductSelectorId() ) {

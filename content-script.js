@@ -84,6 +84,12 @@ var execute = (options) => {
     liveButton.href = liveurl + window.location.pathname;
     liveButton.target = '_blank';
 
+    // devtool button
+    const devtoolButton = button.cloneNode(true);
+    devtoolButton.innerHTML = `<img src="${chrome.extension.getURL('images/cogs.svg')}" width="15" />`;
+    devtoolButton.href = '/devtools/funnels-list';
+    devtoolButton.target = '_blank';
+
     // append
     if( getFunnelId() ) {
         container.appendChild(editButton);
@@ -94,6 +100,7 @@ var execute = (options) => {
     container.appendChild(localButton);
     container.appendChild(stagingButton);
     container.appendChild(liveButton);
+    container.appendChild(devtoolButton);
     
     if( getFunnelId() || getProductSelectorId() ) {
         if(document.querySelectorAll('#petlab-devtool-chrome-ext').length <= 0) {

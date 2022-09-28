@@ -1,7 +1,15 @@
 
 var execute = (options) => { 
 
-    console.log(options);
+    const getApiKey = () => {
+        const images = document.getElementsByTagName("img");
+        const [apiKey] = Array.from(images).filter(image => {
+            return image.className.includes('builder-pixel');
+        }).map(image => {
+            return image.currentSrc.replace('https://cdn.builder.io/api/v1/pixel?apiKey=', '');
+        })
+        return apiKey;
+    };
 
     // get funnel id
     const getFunnelId = () => {
@@ -52,6 +60,18 @@ var execute = (options) => {
     button.style.cursor = "pointer";
 
     // edit button
+    const editJsonButton = button.cloneNode(true);
+    editJsonButton.innerHTML = `<img src="${chrome.extension.getURL('images/doc.svg')}" width="15" />`;;
+    editJsonButton.href = `https://cdn.builder.io/api/v2/content/funnel?query.id=${getFunnelId()}&limit=1&includeRefs=true&apiKey=${getApiKey()}`;
+    editJsonButton.target = "_blank";
+
+    // edit button
+    const configJsonButton = button.cloneNode(true);
+    configJsonButton.innerHTML = `<img src="${chrome.extension.getURL('images/doc.svg')}" width="15" />`;;
+    configJsonButton.href = `https://cdn.builder.io/api/v2/content/product-selector?query.id=${getProductSelectorId()}&limit=1&includeRefs=true&apiKey=${getApiKey()}`;
+    configJsonButton.target = "_blank";
+
+    // edit button
     const editButton = button.cloneNode(true);
     editButton.innerHTML = `<img src="${chrome.extension.getURL('images/pencil.svg')}" width="15" />`;
     editButton.href = `https://builder.io/content/${getFunnelId()}`;
@@ -91,11 +111,18 @@ var execute = (options) => {
     devtoolButton.target = '_blank';
 
     // append
+    
     if( getFunnelId() ) {
         container.appendChild(editButton);
+        setTimeout(() => {
+            container.appendChild(editJsonButton);
+        },1000);
     }
     if( getProductSelectorId() ) {
         container.appendChild(configButton);
+        setTimeout(() => {
+            container.appendChild(configJsonButton);
+        },1000);
     }
     container.appendChild(localButton);
     container.appendChild(stagingButton);
